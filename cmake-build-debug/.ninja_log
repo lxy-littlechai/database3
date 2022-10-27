@@ -1,0 +1,5 @@
+# ninja log v5
+7	1675	6884961990923863	CMakeFiles/database3.dir/main.cpp.obj	79467cd91aca08fe
+1952	2187	6884975725355793	database3.exe	59ec34cb74d69e43
+8	1776	6884962782658320	CMakeFiles/database3.dir/DatabaseManager.cpp.obj	7c6cc2fab0daf40f
+6	1951	6884975723055256	CMakeFiles/database3.dir/FlightsManager.cpp.obj	b4c568a281e743a6
