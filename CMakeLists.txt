@@ -9,6 +9,6 @@ include_directories(${INC_DIR})
 link_directories(${LINK_DIR})
 link_libraries(libmysql)
 
-add_executable(database3 main.cpp DatabaseManager.cpp DatabaseManager.h FlightsManager.cpp FlightsManager.h BusManager.cpp BusManager.h HotelManager.cpp HotelManager.h CustomerManager.cpp CustomerManager.h)
+add_executable(database3 main.cpp DatabaseManager.cpp DatabaseManager.h FlightsManager.cpp FlightsManager.h BusManager.cpp BusManager.h HotelManager.cpp HotelManager.h CustomerManager.cpp CustomerManager.h Reservations.cpp Reservations.h)
 
 target_link_libraries(database3 libmysql) ##Clion改为自己的工程文件

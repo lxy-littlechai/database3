@@ -6,7 +6,7 @@
 #include "DatabaseManager.h"
 #include <cstdio>
 
-char query[1500];
+extern char query[1500];
 
 HotelManager::HotelManager() {
     sprintf(query,"create table if not exists hotel\n"
@@ -29,11 +29,12 @@ HotelManager::HotelManager() {
 }
 
 void HotelManager::input() {
+    printf("请依次输入位置 价格 房间数\n");
     std::cin >> location >> price >> numSeats;
 }
 
 void HotelManager::insert() {
-    std::sprintf(query, "insert into hotel values('%s',%d,%d,0);", location.c_str(),price,numSeats);
+    std::sprintf(query, "insert into hotel values('%s',%d,%d,%d);", location.c_str(),price,numSeats,numSeats);
 
     MYSQL* mysql = &DatabaseManager::getInstance()->mysql;
     if(mysql_query(mysql, query)) {
@@ -44,14 +45,49 @@ void HotelManager::insert() {
     }
 }
 
-void HotelManager::update() {
+std::string HotelManager::reserve() {
+    printf("请选择要预定的酒店位置\n");
+    show();
+    std::cin >> location;
+
     std::sprintf(query, "update hotel set numAvail=numAvail-1 where location='%s'; ", location.c_str());
 
     MYSQL* mysql = &DatabaseManager::getInstance()->mysql;
     if(mysql_query(mysql, query)) {
-        printf("Update Hotel Failed!\n%s", mysql_errno(mysql));
-        return ;
+        printf("Reserve Hotel Failed!\n%s", mysql_errno(mysql));
+        return "Failed";
     } else {
-        printf("Update Hotel Successs!\n");
+        printf("Reserve Hotel Successs!\n");
+        return location;
+    }
+}
+
+void HotelManager::show() {
+    std::sprintf(query, "select * from hotel");
+    MYSQL* mysql = &DatabaseManager::getInstance()->mysql;
+    if(!mysql_query(mysql, query)) {
+        MYSQL_RES *result = mysql_store_result(mysql);
+        int column = mysql_num_fields(result);
+        MYSQL_FIELD *field = nullptr;
+        int length = 12;
+
+        while((field = mysql_fetch_field(result))) {
+            std::cout << std::setw(length) << field->name;
+        }
+        std::cout << std::endl;
+
+        MYSQL_ROW row;
+        while((row = mysql_fetch_row(result))) {
+            for(int i = 0;i < column;i ++) {
+                if(row[i] == NULL) {
+                    std::cout << std::setw(length) << "NULL";
+                } else {
+                    std::cout << std::setw(length) << row[i];
+                }
+
+            }
+            std::cout << std::endl;
+        }
+        mysql_free_result(result);
     }
 }

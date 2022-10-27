@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <string>
+#include <iomanip>
 #ifndef DATABASE3_BUSMANAGER_H
 #define DATABASE3_BUSMANAGER_H
 
@@ -11,7 +12,8 @@ class BusManager {
 public:
     BusManager();
     void insert();
-    void update();
+    std::string reserve();
+    static void show();
     void input();
 
 private:

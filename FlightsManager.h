@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <string>
+#include <iomanip>
 #ifndef DATABASE3_FLIGHTSMANAGER_H
 #define DATABASE3_FLIGHTSMANAGER_H
 
@@ -11,9 +12,11 @@ class FlightsManager {
 public:
     FlightsManager();
     void insert();
-    void update();
+    std::string reserve();
+    static void show();
     void input();
 
+private:
     std::string flightNum;
     int price;
     int numSeats;

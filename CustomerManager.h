@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <iomanip>
 #ifndef DATABASE3_CUSTOMERMANAGER_H
 #define DATABASE3_CUSTOMERMANAGER_H
 
@@ -11,7 +12,10 @@ class CustomerManager {
 public:
     CustomerManager();
     void insert();
+    bool check();
     void input();
+    std::string getName();
+    static void show();
 private:
     std::string custName;
     std::string custID;

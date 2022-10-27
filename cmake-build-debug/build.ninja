@@ -91,6 +91,13 @@ build CMakeFiles/database3.dir/CustomerManager.cpp.obj: CXX_COMPILER__database3_
   OBJECT_DIR = CMakeFiles\database3.dir
   OBJECT_FILE_DIR = CMakeFiles\database3.dir
 
+build CMakeFiles/database3.dir/Reservations.cpp.obj: CXX_COMPILER__database3_Debug E$:/University/Coding$ Space/database3/Reservations.cpp || cmake_object_order_depends_target_database3
+  DEP_FILE = CMakeFiles\database3.dir\Reservations.cpp.obj.d
+  FLAGS = -g -std=gnu++2a
+  INCLUDES = -ID:/mysql-8.0.30-winx64/include
+  OBJECT_DIR = CMakeFiles\database3.dir
+  OBJECT_FILE_DIR = CMakeFiles\database3.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target database3
@@ -99,7 +106,7 @@ build CMakeFiles/database3.dir/CustomerManager.cpp.obj: CXX_COMPILER__database3_
 #############################################
 # Link the executable database3.exe
 
-build database3.exe: CXX_EXECUTABLE_LINKER__database3_Debug CMakeFiles/database3.dir/main.cpp.obj CMakeFiles/database3.dir/DatabaseManager.cpp.obj CMakeFiles/database3.dir/FlightsManager.cpp.obj CMakeFiles/database3.dir/BusManager.cpp.obj CMakeFiles/database3.dir/HotelManager.cpp.obj CMakeFiles/database3.dir/CustomerManager.cpp.obj
+build database3.exe: CXX_EXECUTABLE_LINKER__database3_Debug CMakeFiles/database3.dir/main.cpp.obj CMakeFiles/database3.dir/DatabaseManager.cpp.obj CMakeFiles/database3.dir/FlightsManager.cpp.obj CMakeFiles/database3.dir/BusManager.cpp.obj CMakeFiles/database3.dir/HotelManager.cpp.obj CMakeFiles/database3.dir/CustomerManager.cpp.obj CMakeFiles/database3.dir/Reservations.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -llibmysql  -llibmysql  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   LINK_PATH = -LD:/mysql-8.0.30-winx64/lib

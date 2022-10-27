@@ -3,17 +3,20 @@
 //
 #include <iostream>
 #include <string>
+#include <iomanip>
 #ifndef DATABASE3_HOTELMANAGER_H
 #define DATABASE3_HOTELMANAGER_H
 
 
 class HotelManager {
-private:
+public:
     HotelManager();
     void insert();
-    void update();
+    std::string reserve();
+    static void show();
     void input();
 
+private:
     std::string location;
     int price;
     int numSeats;
