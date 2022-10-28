@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
+    <file url="file://$PROJECT_DIR$/CustomerManager.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/DatabaseManager.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/FlightsManager.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/HotelManager.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/Reservations.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/main.cpp" charset="GBK" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

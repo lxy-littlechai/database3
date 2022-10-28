@@ -2,6 +2,7 @@
 // Created by 16117 on 2022/10/27.
 //
 
+#include <cstring>
 #include "Reservations.h"
 #include "DatabaseManager.h"
 
@@ -27,10 +28,36 @@ void Reservations::insert() {
 
 void Reservations::lookupCustomer() {
     std::string custName;
-    printf("è¯·è¾“å…¥è¦æŸ¥è¯¢çš„å®¢æˆ·å§“å");
+    printf("ÇëÊäÈëÒª²éÑ¯µÄ¿Í»§ÐÕÃû");
     std::cin >> custName;
 
     std::sprintf(query, "select resvType,travelKey from reservation where custname='%s';",custName.c_str());
+    MYSQL* mysql = &DatabaseManager::getInstance()->mysql;
+    if(!mysql_query(mysql, query)) {
+        DatabaseManager::getInstance()->result = mysql_store_result(mysql);
+
+        printf("¸Ã¿Í»§µÄÔ¤¶¨ÐÅÏ¢ÈçÏÂ\n");
+        auto vec = DatabaseManager::getInstance()->showTable();
+
+        for(int i = 1;i < vec.size();i ++) {
+            auto resvType = vec[i][0];
+            auto travelKey = vec[i][1];
+            if(strcmp(resvType, "1") == 0) {
+                std::sprintf(query, "select location from flights where flightNum='%s';",travelKey);
+            } else if(strcmp(resvType, "2") == 0) {
+                std::sprintf(query, "select location from hotel where location='%s';",travelKey);
+            } else if(strcmp(resvType, "3") == 0) {
+                std::sprintf(query, "select location from bus where location='%s';",travelKey);
+            }
+            if(!mysql_query(mysql, query)) {
+                DatabaseManager::getInstance()->result = mysql_store_result(mysql);
+                DatabaseManager::getInstance()->showTable(false);
+            }
+        }
+    }
+
+
+
 
 }
 

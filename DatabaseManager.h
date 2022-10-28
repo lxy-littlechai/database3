@@ -16,14 +16,14 @@ public:
     bool connectMySQL();
     void closeMySQL();
     bool createTable();
-    void showTable();
+    std::vector<std::vector<char*>> showTable(bool header=true);
     MYSQL mysql;
 
-    MYSQL_RES *result = nullptr;
-    //MYSQL_FIELD *field;
-    //MYSQL_ROW row;
-    //int column;
-   // std::vector<std::vector<char*>> table;
+    MYSQL_RES *result;
+    MYSQL_FIELD *field;
+    MYSQL_ROW row;
+    int column;
+    std::vector<std::vector<char*>> table;
 
 private:
     DatabaseManager() = default;

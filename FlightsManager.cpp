@@ -11,7 +11,7 @@ FlightsManager::FlightsManager() {
 //( numAvail >= 0 ) constraint BusNotEmpty
     sprintf(query, "create table if not exists flights\n"
                    "(\n"
-                   "    fightNum varchar(10) not null\n"
+                   "    flightNum varchar(10) not null\n"
                    "    primary key              ,\n"
                    "    price    int         null,\n"
                    "    numSeats int         null,\n"
@@ -19,10 +19,10 @@ FlightsManager::FlightsManager() {
                    "    FromCity varchar(10) null,\n"
                    "    ArivCity varchar(10) null,\n"
                    "    check(numAvail > 0)       \n"
-                   ");\n"
-                   "");
-
+                   ");"
+                );
     MYSQL* mysql = &DatabaseManager::getInstance()->mysql;
+
     if(mysql_query(mysql, query)) {
         printf("Create Flights Failed!\n%s", mysql_error(mysql));
         return ;
@@ -32,7 +32,7 @@ FlightsManager::FlightsManager() {
 }
 
 void FlightsManager::input() {
-    printf("è¯·ä¾æ¬¡è¾“å…¥èˆªç­å· ä»·æ ¼ åº§ä½æ•° èµ·ç‚¹ ç»ˆç‚¹\n");
+    printf("ÇëÒÀ´ÎÊäÈëº½°àºÅ ¼Û¸ñ ×ùÎ»Êý Æðµã ÖÕµã\n");
     std::cin >> flightNum >> price >> numSeats >> FromCity >> ArivCity;
 }
 
@@ -49,11 +49,11 @@ void FlightsManager::insert() {
 }
 
 std::string FlightsManager::reserve() {
-    printf("è¯·é€‰æ‹©è¦é¢„å®šçš„èˆªç­å·\n");
+    printf("ÇëÑ¡ÔñÒªÔ¤¶¨µÄº½°àºÅ\n");
     show();
     std::cin >> flightNum;
 
-    std::sprintf(query, "update flights set numAvail=numAvail-1 where fightNum='%s'; ", flightNum.c_str());
+    std::sprintf(query, "update flights set numAvail=numAvail-1 where flightNum='%s'; ", flightNum.c_str());
 
     MYSQL* mysql = &DatabaseManager::getInstance()->mysql;
     if(mysql_query(mysql, query)) {

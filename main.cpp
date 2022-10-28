@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "DatabaseManager.h"
 #include "FlightsManager.h"
 #include "BusManager.h"
@@ -11,92 +12,96 @@
 extern char query[1500];
 int main() {
 
+
+
     if(DatabaseManager::getInstance()->connectMySQL()) {
-//        FlightsManager flightsManager;
-//        BusManager busManager;
-//        HotelManager hotelManager;
-//        CustomerManager customerManager;
+        FlightsManager flightsManager;
+        BusManager busManager;
+        HotelManager hotelManager;
+        CustomerManager customerManager;
 
         int operation;
         while(true) {
             memset(query,'\0',sizeof(query));
-            printf("è¯·è¾“å…¥æ‚¨çš„æ“ä½œ\n"
-                   "1ã€åˆ›å»ºæ–°èˆªç­\n"
-                   "2ã€åˆ›å»ºæ–°å¤§å·´è½¦\n"
-                   "3ã€åˆ›å»ºé…’åº—\n"
-                   "4ã€åˆ›å»ºç”¨æˆ·\n"
-                   "5ã€é¢„å®š\n"
-                   "6ã€æŸ¥è¯¢èˆªç­ä¿¡æ¯\n"
-                   "7ã€æŸ¥è¯¢å¤§å·´ä¿¡æ¯\n"
-                   "8ã€æŸ¥è¯¢å®¾é¦†ä¿¡æ¯\n"
-                   "9ã€æŸ¥è¯¢å®¢æˆ·ä¿¡æ¯\n"
-                   "10ã€æŸ¥è¯¢é¢„å®šä¿¡æ¯\n"
-                   "11ã€æŸ¥è¯¢é¡¾å®¢æ—…è¡Œçº¿è·¯\n");
+            printf("ÇëÊäÈëÄúµÄ²Ù×÷\n"
+                   "1¡¢´´½¨ÐÂº½°à\n"
+                   "2¡¢´´½¨ÐÂ´ó°Í³µ\n"
+                   "3¡¢´´½¨¾Æµê\n"
+                   "4¡¢´´½¨ÓÃ»§\n"
+                   "5¡¢Ô¤¶¨\n"
+                   "6¡¢²éÑ¯º½°àÐÅÏ¢\n"
+                   "7¡¢²éÑ¯´ó°ÍÐÅÏ¢\n"
+                   "8¡¢²éÑ¯±ö¹ÝÐÅÏ¢\n"
+                   "9¡¢²éÑ¯¿Í»§ÐÅÏ¢\n"
+                   "10¡¢²éÑ¯Ô¤¶¨ÐÅÏ¢\n"
+                   "11¡¢²éÑ¯¹Ë¿ÍÂÃÐÐÏßÂ·\n");
 
             std::cin >> operation;
-//            switch (operation) {
-//                case 1:{
-//                    flightsManager.input();
-//                    flightsManager.insert();
-//                    break;
-//                }
-//                case 2: {
-//                    busManager.input();
-//                    busManager.insert();
-//                    break;
-//                }
-//                case 3: {
-//                    hotelManager.input();
-//                    hotelManager.insert();
-//                    break;
-//                }
-//                case 4: {
-//                    customerManager.input();
-//                    customerManager.insert();
-//                    break;
-//                }
-//                case 5: {
-//                    int resvType;
-//                    std::string travelKey = "Failed";
-//                    customerManager.input();
-//                    if(!customerManager.check()) {
-//                        customerManager.insert();
-//                    }
-//                    printf("è¯·è¾“å…¥é¢„å®šå†…å®¹ 1-èˆªç­ 2-å®¾é¦† 3-å¤§å·´è½¦\n");
-//                    std::cin >> resvType;
-//                    switch (resvType) {
-//                        case 1: {
-//                            travelKey = flightsManager.reserve();
-//                            break;
-//                        }
-//                        case 2: {
-//                            travelKey = hotelManager.reserve();
-//                            break;
-//                        }
-//                        case 3: {
-//                            travelKey = busManager.reserve();
-//                            break;
-//                        }
-//                    }
-//
-//                    if(travelKey != "Failed") {
-//                        Reservations reservation(customerManager.getName(), resvType, travelKey);
-//                        reservation.insert();
-//                    }
-//                }
-//                case 6: {FlightsManager::show(); break;}
-//                case 7: {BusManager::show(); break;}
-//                case 8: {HotelManager::show(); break;}
-//                case 9: {CustomerManager::show(); break;}
-//                case 10: {Reservations::show(); break;}
-//                case 11: {Reservations::lookupCustomer();break;}
-//            }
+            switch (operation) {
+                case 1:{
+                    flightsManager.input();
+                    flightsManager.insert();
+                    break;
+                }
+                case 2: {
+                    busManager.input();
+                    busManager.insert();
+                    break;
+                }
+                case 3: {
+                    hotelManager.input();
+                    hotelManager.insert();
+                    break;
+                }
+                case 4: {
+                    customerManager.input();
+                    customerManager.insert();
+                    break;
+                }
+                case 5: {
+                    int resvType;
+                    std::string travelKey = "Failed";
+                    customerManager.input();
+                    if(!customerManager.check()) {
+                        customerManager.insert();
+                    }
+                    printf("ÇëÊäÈëÔ¤¶¨ÄÚÈÝ 1-º½°à 2-±ö¹Ý 3-´ó°Í³µ\n");
+                    std::cin >> resvType;
+                    switch (resvType) {
+                        case 1: {
+                            travelKey = flightsManager.reserve();
+                            break;
+                        }
+                        case 2: {
+                            travelKey = hotelManager.reserve();
+                            break;
+                        }
+                        case 3: {
+                            travelKey = busManager.reserve();
+                            break;
+                        }
+                    }
+
+                    if(travelKey != "Failed") {
+                        Reservations reservation(customerManager.getName(), resvType, travelKey);
+                        reservation.insert();
+                    }
+                    break;
+                }
+                case 6: {FlightsManager::show(); break;}
+                case 7: {BusManager::show(); break;}
+                case 8: {HotelManager::show(); break;}
+                case 9: {CustomerManager::show(); break;}
+                case 10: {Reservations::show(); break;}
+                case 11: {Reservations::lookupCustomer();break;}
+            }
 
 
         }
 
 
         DatabaseManager::getInstance()->closeMySQL();
+
     }
 
 

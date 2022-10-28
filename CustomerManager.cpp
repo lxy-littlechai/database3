@@ -14,7 +14,7 @@ CustomerManager::CustomerManager() {
                   "        primary key,\n"
                   "    custName varchar(10) not null,\n"
                   "    constraint customers_custName_uindex\n"
-                  "        unique (custName)"
+                  "        unique (custName));"
                   "");
 
     MYSQL* mysql = &DatabaseManager::getInstance()->mysql;
@@ -50,7 +50,7 @@ bool CustomerManager::check() {
 }
 
 void CustomerManager::input() {
-    printf("è¯·è¾“å…¥å§“å\n");
+    printf("ÇëÊäÈëÐÕÃû\n");
     std::cin >> custName;
 }
 

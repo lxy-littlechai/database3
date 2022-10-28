@@ -5,7 +5,7 @@
 #include "DatabaseManager.h"
 #include <iomanip>
 
-char query[150];
+char query[1500];
 std::shared_ptr<DatabaseManager> DatabaseManager::getInstance() {
     static auto instance = std::shared_ptr<DatabaseManager>(new DatabaseManager());
     return instance;
@@ -24,38 +24,47 @@ bool DatabaseManager::createDatabase(std::string& databaseName) {
     return false;
 }
 
-void DatabaseManager::showTable() {
-//    column = mysql_num_fields(result);
-//    int length = 12;
-//    int tableRowLength = 0;
-//
-//    std::vector<char*> empty;
-//    table.clear();
-//    table.push_back(empty);
-//
-//    while((field = mysql_fetch_field(result))) {
-//        table[tableRowLength].push_back(field->name);
-//        std::cout << std::setw(length) << field->name;
-//    }
-//    std::cout << std::endl;
-//
-//    while((row = mysql_fetch_row(result))) {
-//        for(int i = 0;i < column;i ++) {
-//            table.push_back(empty);
-//            tableRowLength ++;
-//            if(row[i] == NULL) {
-//                table[table.size()].push_back(const_cast<char*>("NULL"));
-//                std::cout << std::setw(length) << "NULL";
-//            } else {
-//                table[table.size()].push_back(row[i]);
-//                std::cout << std::setw(length) << row[i];
-//            }
-//
-//        }
-//        std::cout << std::endl;
-//    }
-//    mysql_free_result(result);
-//    return table;
+std::vector<std::vector<char*>> DatabaseManager::showTable(bool header) {
+    column = mysql_num_fields(result);
+    int length = 12;
+    int tableRowLength = 0;
+
+    static std::vector<char*> empty;
+    for(int i = 0;i < table.size();i ++) {
+        table[i].clear();
+    }
+    table.clear();
+    table.push_back(empty);
+
+    if(header) {
+        while((field = mysql_fetch_field(result))) {
+            table[tableRowLength].push_back(field->name);
+            std::cout << std::setw(length) << field->name;
+        }
+        std::cout << std::endl;
+    }
+
+
+    while((row = mysql_fetch_row(result))) {
+        tableRowLength ++;
+        table.push_back(empty);
+        for(int i = 0;i < column;i ++) {
+
+            if(row[i] == NULL) {
+                table[tableRowLength].push_back(const_cast<char*>("NULL"));
+                std::cout << std::setw(length) << "NULL";
+            } else {
+                table[tableRowLength].push_back(row[i]);
+                std::cout << std::setw(length) << row[i];
+            }
+
+        }
+        std::cout << std::endl;
+    }
+
+    //mysql_free_result(result);
+    result = nullptr;
+    return table;
 }
 
 bool DatabaseManager::connectMySQL() {

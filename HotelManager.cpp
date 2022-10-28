@@ -29,7 +29,7 @@ HotelManager::HotelManager() {
 }
 
 void HotelManager::input() {
-    printf("è¯·ä¾æ¬¡è¾“å…¥ä½ç½® ä»·æ ¼ æˆ¿é—´æ•°\n");
+    printf("ÇëÒÀ´ÎÊäÈëÎ»ÖÃ ¼Û¸ñ ·¿¼äÊý\n");
     std::cin >> location >> price >> numSeats;
 }
 
@@ -46,7 +46,7 @@ void HotelManager::insert() {
 }
 
 std::string HotelManager::reserve() {
-    printf("è¯·é€‰æ‹©è¦é¢„å®šçš„é…’åº—ä½ç½®\n");
+    printf("ÇëÑ¡ÔñÒªÔ¤¶¨µÄ¾ÆµêÎ»ÖÃ\n");
     show();
     std::cin >> location;
 
