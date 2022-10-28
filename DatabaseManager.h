@@ -5,6 +5,7 @@
 #ifndef DATABASE3_DATABASEMANAGER_H
 #define DATABASE3_DATABASEMANAGER_H
 #include <iostream>
+#include <vector>
 #include <mysql.h>
 #include <memory>
 
@@ -15,12 +16,17 @@ public:
     bool connectMySQL();
     void closeMySQL();
     bool createTable();
+    void showTable();
     MYSQL mysql;
 
-private:
+    MYSQL_RES *result = nullptr;
+    //MYSQL_FIELD *field;
+    //MYSQL_ROW row;
+    //int column;
+   // std::vector<std::vector<char*>> table;
 
-    MYSQL_RES *res;
-    MYSQL_ROW column;
+private:
+    DatabaseManager() = default;
 };
 
 

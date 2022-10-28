@@ -69,28 +69,7 @@ void FlightsManager::show() {
     std::sprintf(query, "select * from flights");
     MYSQL* mysql = &DatabaseManager::getInstance()->mysql;
     if(!mysql_query(mysql, query)) {
-        MYSQL_RES *result = mysql_store_result(mysql);
-        int column = mysql_num_fields(result);
-        MYSQL_FIELD *field = nullptr;
-        int length = 12;
-
-        while((field = mysql_fetch_field(result))) {
-            std::cout << std::setw(length) << field->name;
-        }
-        std::cout << std::endl;
-
-        MYSQL_ROW row;
-        while((row = mysql_fetch_row(result))) {
-            for(int i = 0;i < column;i ++) {
-                if(row[i] == NULL) {
-                    std::cout << std::setw(length) << "NULL";
-                } else {
-                    std::cout << std::setw(length) << row[i];
-                }
-
-            }
-            std::cout << std::endl;
-        }
-        mysql_free_result(result);
+        DatabaseManager::getInstance()->result = mysql_store_result(mysql);
+        DatabaseManager::getInstance()->showTable();
     }
 }

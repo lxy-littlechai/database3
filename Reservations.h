@@ -13,6 +13,7 @@ public:
     Reservations(std::string,int,std::string);
     void insert();
     static void show();
+    static void lookupCustomer();
 
 private:
     std::string custName;
